@@ -231,7 +231,7 @@ export default {
     }
 
     &.current:not(.disabled) span {
-      color: rgb(170, 2, 2);
+      color: #fff;
       background-color: @color-primary-user;
     }
 

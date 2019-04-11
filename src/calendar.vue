@@ -1,6 +1,6 @@
 <template lang="pug">
   div.cl-container
-    div.cl-container-header.main-between
+    div.cl-container-header.main-between.cross-center
       i.prev-trangle(
         @click="prevAction"
       )
@@ -140,6 +140,11 @@ export default {
 .main-between{
  display: flex;
  justify-content: space-between;
+}
+
+.cross-center{
+  display: flex;
+  align-items: center;
 }
 
 .cl-container{
