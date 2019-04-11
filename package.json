@@ -1,0 +1,47 @@
+{
+  "name": "vue-like-el-calendar",
+  "version": "1.0.0",
+  "description": "仿elementUI的日期选择组件，制作的日历组件。",
+  "main": "dist/vue-like-el-calendar.min.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --config build/webpack.conf.js",
+    "build": "webpack --inline --progress --config build/webpack.conf.js"
+  },
+  "keywords": [
+    "calendar"
+  ],
+  "author": "Wei Lin",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^2.1.1",
+    "fecha": "^3.0.2",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.8.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "pug-filters": "^3.1.0",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-resources-loader": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "style-resources-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "url-loader": "^1.1.2",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
