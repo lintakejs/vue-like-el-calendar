@@ -42,7 +42,7 @@ export default {
   props: {
     value: {
       type: [String, Number, Date],
-      default: () => {}
+      default: ''
     },
     format: {
       type: String,
@@ -65,7 +65,7 @@ export default {
     return {
       currentView: this.selectMode,
       chooseValue: this.valueFormatDate(this.value),
-      date: nowYear(this.valueFormatDate(this.value)) || new Date()
+      date: this.value ? nowYear(this.valueFormatDate(this.value)) : nowYear(new Date())
     }
   },
 
