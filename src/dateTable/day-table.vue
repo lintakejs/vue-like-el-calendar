@@ -19,10 +19,13 @@
           :key="key"
           :class="getCellClasses(cell)"
         )
-          div
-            span {{ cell.text }}
+          Expand(
+            :cell="cell"
+            :render="renderDayCell"
+          )
 </template>
 <script>
+import Expand from './expand.vue'
 import { weeks, getFirstDayOfMonth, getDayCountOfMonth, getStartDateOfMonth, nextDate, clearTime as _clearTime } from '../utils/calendar'
 
 const getDateTimestamp = function (time) {
@@ -44,7 +47,8 @@ export default {
     },
     value: {},
     date: {},
-    disabledDate: {}
+    disabledDate: {},
+    renderCell: Function
   },
 
   data () {
@@ -68,6 +72,20 @@ export default {
     },
     startDate () {
       return getStartDateOfMonth(this.year, this.month)
+    },
+    renderDayCell (h, params) {
+      let render = function (h, params) {
+        return (
+          <div>
+            <span>{ params.cell.text }</span>
+          </div>
+        )
+      }
+
+      if (this.renderCell) {
+        render = this.renderCell
+      }
+      return render
     },
     rows () {
       const date = new Date(this.year, this.month, 1)

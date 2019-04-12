@@ -18,6 +18,7 @@
       :value="chooseValue"
       :date="date"
       :disabled-date="disabledDate"
+      :renderCell="renderDayCell"
       @pick="handleDayPick"
     )
     month-table(
@@ -25,6 +26,7 @@
       :value="chooseValue"
       :date="date"
       :disabled-date="disabledDate"
+      :renderCell="renderMonthCell"
       @pick="handleMonthPick"
     )
 </template>
@@ -58,7 +60,9 @@ export default {
     disabledDate: {
       type: Function,
       default: () => {}
-    }
+    },
+    renderDayCell: Function,
+    renderMonthCell: Function
   },
 
   data () {

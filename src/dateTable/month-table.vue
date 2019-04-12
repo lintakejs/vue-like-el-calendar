@@ -12,10 +12,13 @@
           :key="key"
           :class="getCellStyle(cell)"
         )
-          div
-            a.cell {{ months[cell.text] }}
+          Expand(
+            :cell="cell"
+            :render="renderMonthCell"
+          )
 </template>
 <script>
+import Expand from './expand.vue'
 import { getDayCountOfMonth, nextDate, months, range } from '../utils/calendar'
 import { hasClass } from '../utils/dom'
 import { arrayFindIndex, coerceTruthyValueToArray } from '../utils/array'
@@ -44,7 +47,12 @@ export default {
   props: {
     value: {},
     date: {},
-    disabledDate: {}
+    disabledDate: {},
+    renderCell: Function
+  },
+
+  components: {
+    Expand
   },
 
   data () {
@@ -55,6 +63,21 @@ export default {
   },
 
   computed: {
+    // 渲染函数
+    renderMonthCell (h, params) {
+      let render = function (h, params) {
+        return (
+          <div>
+            <a class="cell">{ months[params.cell.text] }</a>
+          </div>
+        )
+      }
+
+      if (this.renderCell) {
+        render = this.renderCell
+      }
+      return render
+    },
     // 需要渲染的行
     rows () {
       const rows = this.tableRows
