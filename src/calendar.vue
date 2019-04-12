@@ -126,7 +126,7 @@ export default {
     },
     // 天选择
     handleDayPick (value) {
-      this.chooseValue = modifyDate(this.chooseValue, value.getFullYear(), value.getMonth(), value.getDate())
+      this.chooseValue = modifyDate(this.chooseValue ? this.chooseValue : new Date(), value.getFullYear(), value.getMonth(), value.getDate())
       this.date = this.chooseValue
       this.$emit('pickDate', formatDate(this.chooseValue, this.format))
     }
