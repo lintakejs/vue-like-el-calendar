@@ -1,9 +1,9 @@
-#vue-like-el-calendar
+# vue-like-el-calendar
 ___
 
 一个仿element datePicker样式的日历组件
 
-##Usage
+## Usage
 ___
 
 You can install with npm.
@@ -15,10 +15,10 @@ You can install with npm.
 import vueLikeElCalendar from 'vue-like-el-calendar'
 ``` 
 
-##API
+## API
 ___
 
-###Props
+### Props
 
 | name           | type                               | default         | description |
 | --------------- | ------------------------------ | --------------- | ------------- |
@@ -27,7 +27,7 @@ ___
 | selectMode  | String                             | day              | 目前只支持月份以及日期选择, month / day |
 | disabledDate| Function (time):Boolean |                      | 禁止选择的日期 |
 
-###Events
+### Events
 
 | event      | description       | callback           |
 | ----------- | ------------------- | ------------------ |
