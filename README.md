@@ -28,6 +28,7 @@ ___
 | disabledDate| Function (time):Boolean |                      | 禁止选择的日期 |
 
 ###Events
+
 | event      | description       | callback           |
 | ----------- | ------------------- | ------------------ |
 | pickDate | 当选中日期触发 | Function(time) |
