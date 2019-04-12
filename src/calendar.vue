@@ -65,7 +65,7 @@ export default {
     return {
       currentView: this.selectMode,
       chooseValue: this.valueFormatDate(this.value),
-      date: nowYear(this.valueFormatDate(this.value))
+      date: nowYear(this.valueFormatDate(this.value)) || new Date()
     }
   },
 
