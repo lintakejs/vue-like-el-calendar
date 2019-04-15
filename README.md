@@ -6,7 +6,7 @@ ___
 ## calendar view
 ![avatar](/readmeImg/view1.png)
 
-![avatar](/readmeImg/view2.png)
+![avatar](/readmeImg/view2.jpeg)
 
 ## Usage
 ___
