@@ -3,6 +3,11 @@ ___
 
 一个仿element datePicker样式的日历组件
 
+## calendar view
+![avatar](/readmeImg/view1.png)
+
+![avatar](/readmeImg/view2.png)
+
 ## Usage
 ___
 
