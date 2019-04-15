@@ -1,7 +1,5 @@
 <template lang="pug">
-  table.cl-month-content(
-    @click="handleMonthTableClick"
-  )
+  table.cl-month-content
     tbody
       tr(
         v-for="(row, key) in rows"
@@ -11,15 +9,12 @@
           v-for="(cell, key) in row"
           :key="key"
           :class="getCellStyle(cell)"
+          @click="handleMonthTableClick"
         )
-          Expand(
-            :cell="cell"
-            :render="renderMonthCell"
-          )
+          slot(:data="cell")
 </template>
 <script>
-import Expand from './expand.vue'
-import { getDayCountOfMonth, nextDate, months, range } from '../utils/calendar'
+import { getDayCountOfMonth, nextDate, range } from '../utils/calendar'
 import { hasClass } from '../utils/dom'
 import { arrayFindIndex, coerceTruthyValueToArray } from '../utils/array'
 
@@ -47,37 +42,16 @@ export default {
   props: {
     value: {},
     date: {},
-    disabledDate: {},
-    renderCell: Function
-  },
-
-  components: {
-    Expand
+    disabledDate: {}
   },
 
   data () {
     return {
-      months: months,
       tableRows: [ [], [], [] ]
     }
   },
 
   computed: {
-    // 渲染函数
-    renderMonthCell (h, params) {
-      let render = function (h, params) {
-        return (
-          <div>
-            <a class="cell">{ months[params.cell.text] }</a>
-          </div>
-        )
-      }
-
-      if (this.renderCell) {
-        render = this.renderCell
-      }
-      return render
-    },
     // 需要渲染的行
     rows () {
       const rows = this.tableRows
@@ -136,12 +110,12 @@ export default {
     },
     handleMonthTableClick (event) {
       let target = event.target
-      if (target.tagName === 'A') {
-        target = target.parentNode.parentNode
-      }
-      if (target.tagName === 'DIV') {
-        target = target.parentNode
-      }
+      // if (target.tagName === 'A') {
+      //   target = target.parentNode.parentNode
+      // }
+      // if (target.tagName === 'DIV') {
+      //   target = target.parentNode
+      // }
       if (target.tagName !== 'TD') return
       if (hasClass(target, 'disabled')) return
       const column = target.cellIndex

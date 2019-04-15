@@ -21,6 +21,14 @@
       :renderCell="renderDayCell"
       @pick="handleDayPick"
     )
+      template(slot-scope="dayCell")
+        slot(
+          name="days"
+          v-if="!!$scopedSlots.days"
+          :data="dayCell.data"
+        )
+        div(v-else)
+          span {{ dayCell.data.text }}
     month-table(
       v-show="currentView === 'month'"
       :value="chooseValue"
@@ -29,11 +37,19 @@
       :renderCell="renderMonthCell"
       @pick="handleMonthPick"
     )
+      template(slot-scope="monthCell")
+        slot(
+          name="months"
+          v-if="!!$scopedSlots.months"
+          :data="monthCell.data"
+        )
+        div(v-else)
+          a.cell {{ months[monthCell.data.text] }}
 </template>
 <script>
 import monthTable from './dateTable/month-table.vue'
 import dayTable from './dateTable/day-table.vue'
-import { parseDate, formatDate, modifyDate, nowYear, prevYear, nextYear, prevMonth, nextMonth } from './utils/calendar'
+import { months, parseDate, formatDate, modifyDate, nowYear, prevYear, nextYear, prevMonth, nextMonth } from './utils/calendar'
 
 export default {
   components: {
@@ -67,6 +83,7 @@ export default {
 
   data () {
     return {
+      months: months,
       currentView: this.selectMode,
       chooseValue: this.valueFormatDate(this.value),
       date: this.value ? nowYear(this.valueFormatDate(this.value)) : nowYear(new Date())

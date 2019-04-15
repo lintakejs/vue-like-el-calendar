@@ -2,7 +2,6 @@
   table.cl-day-content(
     cellspacing="0"
     cellpadding="0"
-    @click="handleClick"
   )
     tbody
       tr
@@ -18,14 +17,11 @@
           v-for="(cell, key) in row"
           :key="key"
           :class="getCellClasses(cell)"
+          @click="handleClick"
         )
-          Expand(
-            :cell="cell"
-            :render="renderDayCell"
-          )
+          slot(:data="cell")
 </template>
 <script>
-import Expand from './expand.vue'
 import { weeks, getFirstDayOfMonth, getDayCountOfMonth, getStartDateOfMonth, nextDate, clearTime as _clearTime } from '../utils/calendar'
 
 const getDateTimestamp = function (time) {
@@ -47,8 +43,7 @@ export default {
     },
     value: {},
     date: {},
-    disabledDate: {},
-    renderCell: Function
+    disabledDate: {}
   },
 
   data () {
@@ -72,20 +67,6 @@ export default {
     },
     startDate () {
       return getStartDateOfMonth(this.year, this.month)
-    },
-    renderDayCell (h, params) {
-      let render = function (h, params) {
-        return (
-          <div>
-            <span>{ params.cell.text }</span>
-          </div>
-        )
-      }
-
-      if (this.renderCell) {
-        render = this.renderCell
-      }
-      return render
     },
     rows () {
       const date = new Date(this.year, this.month, 1)
@@ -181,14 +162,14 @@ export default {
     },
     handleClick (event) {
       let target = event.target
-      if (target.tagName === 'SPAN') {
-        target = target.parentNode.parentNode
-      }
-      if (target.tagName === 'DIV') {
-        target = target.parentNode
-      }
+      // if (target.tagName === 'SPAN') {
+      //   target = target.parentNode.parentNode
+      // }
+      // if (target.tagName === 'DIV') {
+      //   target = target.parentNode
+      // }
 
-      if (target.tagName !== 'TD') return
+      // if (target.tagName !== 'TD') return
 
       const row = target.parentNode.rowIndex - 1
       const column = target.cellIndex
