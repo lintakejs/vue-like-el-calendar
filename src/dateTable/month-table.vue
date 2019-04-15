@@ -2,16 +2,17 @@
   table.cl-month-content
     tbody
       tr(
-        v-for="(row, key) in rows"
-        :key="key"
+        v-for="(row, rowIndex) in rows"
+        :key="rowIndex"
       )
         td(
-          v-for="(cell, key) in row"
-          :key="key"
+          v-for="(cell, cellIndex) in row"
+          :key="cellIndex"
           :class="getCellStyle(cell)"
-          @click="handleMonthTableClick"
+          @click="handleMonthTableClick(rowIndex, cellIndex)"
         )
-          slot(:data="cell")
+          div
+            slot(:data="cell")
 </template>
 <script>
 import { getDayCountOfMonth, nextDate, range } from '../utils/calendar'
@@ -108,19 +109,12 @@ export default {
       const year = this.date.getFullYear()
       return new Date(year, month, 1)
     },
-    handleMonthTableClick (event) {
-      let target = event.target
-      // if (target.tagName === 'A') {
-      //   target = target.parentNode.parentNode
-      // }
-      // if (target.tagName === 'DIV') {
-      //   target = target.parentNode
-      // }
-      if (target.tagName !== 'TD') return
-      if (hasClass(target, 'disabled')) return
-      const column = target.cellIndex
-      const row = target.parentNode.rowIndex
-      const month = row * 4 + column
+    handleMonthTableClick (rowIndex, cellIndex) {
+      const row = rowIndex
+      const column = cellIndex
+      const cell = this.rows[row][column]
+      if (cell.disabled) return
+      const month = cell.text
       this.$emit('pick', month)
     }
   }

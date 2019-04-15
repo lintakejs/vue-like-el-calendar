@@ -27,8 +27,7 @@
           v-if="!!$scopedSlots.days"
           :data="dayCell.data"
         )
-        div(v-else)
-          span {{ dayCell.data.text }}
+        span(v-else) {{ dayCell.data.text }}
     month-table(
       v-show="currentView === 'month'"
       :value="chooseValue"
@@ -43,8 +42,7 @@
           v-if="!!$scopedSlots.months"
           :data="monthCell.data"
         )
-        div(v-else)
-          a.cell {{ months[monthCell.data.text] }}
+        a.cell(v-else) {{ months[monthCell.data.text] }}
 </template>
 <script>
 import monthTable from './dateTable/month-table.vue'
@@ -65,6 +63,10 @@ export default {
     format: {
       type: String,
       default: 'YYYY-MM-DD'
+    },
+    formatMonth: {
+      type: String,
+      default: 'YYYY-MM'
     },
     selectMode: {
       type: String,
@@ -97,6 +99,10 @@ export default {
     month () {
       return this.date.getMonth()
     }
+  },
+
+  mounted () {
+    console.log(this)
   },
 
   methods: {
@@ -140,7 +146,7 @@ export default {
       this.date = modifyDate(this.date, this.year, month, 1)
       if (this.selectMode === 'month') {
         this.chooseValue = this.date
-        this.$emit('pickDate', formatDate(this.chooseValue, 'YYYY-MM'))
+        this.$emit('pickDate', formatDate(this.chooseValue, this.formatMonth))
       } else {
         this.currentView = 'day'
       }

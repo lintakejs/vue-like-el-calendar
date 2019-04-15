@@ -10,16 +10,17 @@
           :key="key"
         ) {{ week }}
       tr(
-        v-for="(row, key) in rows"
-        :key="key"
+        v-for="(row, rowIndex) in rows"
+        :key="rowIndex"
       )
         td(
-          v-for="(cell, key) in row"
-          :key="key"
+          v-for="(cell, cellIndex) in row"
+          :key="cellIndex"
           :class="getCellClasses(cell)"
-          @click="handleClick"
+          @click="handleClick(rowIndex, cellIndex)"
         )
-          slot(:data="cell")
+          div
+            slot(:data="cell")
 </template>
 <script>
 import { weeks, getFirstDayOfMonth, getDayCountOfMonth, getStartDateOfMonth, nextDate, clearTime as _clearTime } from '../utils/calendar'
@@ -160,22 +161,11 @@ export default {
       const offsetFromStart = row * 7 + column - this.offsetDay
       return nextDate(this.startDate, offsetFromStart)
     },
-    handleClick (event) {
-      let target = event.target
-      // if (target.tagName === 'SPAN') {
-      //   target = target.parentNode.parentNode
-      // }
-      // if (target.tagName === 'DIV') {
-      //   target = target.parentNode
-      // }
-
-      // if (target.tagName !== 'TD') return
-
-      const row = target.parentNode.rowIndex - 1
-      const column = target.cellIndex
+    handleClick (rowIndex, cellIndex) {
+      const row = rowIndex
+      const column = cellIndex
       const cell = this.rows[row][column]
       if (cell.disabled) return
-
       const newDate = this.getDateOfCell(row, column)
       this.$emit('pick', newDate)
     }
