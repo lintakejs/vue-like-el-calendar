@@ -1,6 +1,6 @@
 {
   "name": "vue-like-el-calendar",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "仿elementUI的日期选择组件，制作的日历组件。",
   "main": "dist/vue-like-el-calendar.min.js",
   "scripts": {
