@@ -64,10 +64,6 @@ export default {
       type: String,
       default: 'YYYY-MM-DD'
     },
-    formatMonth: {
-      type: String,
-      default: 'YYYY-MM'
-    },
     selectMode: {
       type: String,
       default: 'day',
@@ -142,7 +138,7 @@ export default {
       this.date = modifyDate(this.date, this.year, month, 1)
       if (this.selectMode === 'month') {
         this.chooseValue = this.date
-        this.$emit('pickDate', formatDate(this.chooseValue, this.formatMonth))
+        this.$emit('pickDate', formatDate(this.chooseValue, this.format))
       } else {
         this.currentView = 'day'
       }
