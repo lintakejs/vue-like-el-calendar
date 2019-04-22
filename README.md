@@ -29,7 +29,6 @@ ___
 | --------------- | ------------------------------ | --------------- | ------------- |
 | value           | String,Number,Date        |                     | 选中的日期 |
 | format         | String                             | YYYY-MM-DD | https://github.com/taylorhakes/fecha   |
-| formatMonth     | String                             | YYYY-MM   | https://github.com/taylorhakes/fecha   |
 | selectMode  | String                             | day              | 目前只支持月份以及日期选择, month / day |
 | disabledDate| Function (time):Boolean |                      | 禁止选择的日期 |
 
