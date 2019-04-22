@@ -101,10 +101,6 @@ export default {
     }
   },
 
-  mounted () {
-    console.log(this)
-  },
-
   methods: {
     valueFormatDate (value) {
       if (value instanceof Date) {
